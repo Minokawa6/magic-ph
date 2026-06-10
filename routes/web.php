@@ -6,6 +6,15 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('homepage');
 })->name('home');
+Route::get('/products', function () {
+    return Inertia::render('products/Index');
+});
+Route::get('/product-show', function () {
+    return Inertia::render('products/Show');
+});
+Route::get('/cart', function () {
+    return Inertia::render('cart/Index');
+});
 
 
 
