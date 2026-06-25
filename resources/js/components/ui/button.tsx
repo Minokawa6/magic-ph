@@ -7,7 +7,7 @@ interface buttonProps {
     onClick?: () => void
 };
 const btnStyles = {
-    primary: 'cursor-pointer rounded-md border-2 border-none bg-cyan-500 px-4 py-2 font-bold text-center',
+    primary: 'cursor-pointer rounded-md border-2 border-none font-bold text-white bg-[#3984e7] px-4 py-2 font-bold text-center',
     secondary: ''
 };
 
