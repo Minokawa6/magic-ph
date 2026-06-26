@@ -1,4 +1,5 @@
 import { Button } from '../ui/button';
+import { ConditionTag } from '../ui/condition-tag';
 interface productCardProps {
     id: string;
     name: string;
@@ -21,13 +22,20 @@ export const ProductCard = ({
     return (
         <div
             id={id}
-            className="m-auto flex h-[400px] w-64 cursor-pointer flex-col justify-evenly gap-1 rounded-2xl border-2 border-none bg-white px-8 py-4"
+            className="text-text bg-card-bg m-auto flex h-fit w-[230px] cursor-pointer flex-col justify-evenly gap-1 rounded-2xl border-2 border-none p-2"
             onClick={onClick}
         >
-            <h1 className="text-center font-bold text-black">{name}</h1>
-            <img src={imgSrc} alt={imgAlt}></img>
-            <h2 className="text-sm text-gray-500">{subtitle}</h2>
-            <Button label={price} />
+            <div className="flex h-16 items-center">
+                <h2 className="line-clamp-2 text-base font-bold text-wrap">{name}</h2>
+            </div>
+            <img className="w-[214px] rounded-xl" src={imgSrc} alt={imgAlt}></img>
+            <div className="flex flex-row items-center gap-1">
+                <h3 className="text-subtext text-xs">{subtitle}</h3>
+                <ConditionTag condition="NM" />
+            </div>
+            <h4 className="text-price font-bold">₱{price}</h4>
+            <h3 className="text-subtext text-xs">Quantity: 2</h3>
+            <Button label="Add to Cart" />
         </div>
     );
 };

@@ -9,10 +9,15 @@
 
 @theme {
     --font-sans: 'Inter', sans-serif;
-    --text-color: var(--text-color);
+    --color-text: var(--text-color);
+    --color-subtext: var(--subtext-color);
+    --color-price: #ff0d0d;
 
     --color-bg: var(--background);
     --color-nav: var(--nav);
+    --color-nm: #17c14f;
+
+    --color-card-bg: var(--card-bg);
 }
 @layer base {
     /* applies default values to the whole website */
@@ -20,7 +25,7 @@
     }
 
     h1 {
-        @apply text-2xl font-bold;
+        @apply text-2xl font-bold text-[#ededed];
     }
 }
 
@@ -28,18 +33,26 @@
     /* Light Theme */
     /* Text mods */
     --text-color: #2b3049;
+    --subtext-color: #596185;
 
     /* Color mods */
     --background: #ededed;
     --nav: #2b3049;
+
+    /* Card mods */
+    --card-bg: #ffffff;
 }
 
 .dark {
     /* Dark Theme */
     /* Text mods */
     --text-color: #ededed;
+    --subtext-color: #c1c1c1;
 
     /* Color mods */
     --background: #4e5155;
     --nav: #2b3049;
+
+    /* Card mods */
+    --card-bg: #3c3c3c;
 }
