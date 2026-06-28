@@ -25,7 +25,7 @@
     }
 
     h1 {
-        @apply text-2xl font-bold text-[#ededed];
+        @apply text-text text-2xl font-bold;
     }
 }
 

@@ -7,7 +7,7 @@ export const NavBar = ({ onHomeClick }: NavBarProps) => {
     return (
         <nav className="bg-nav flex h-fit w-full flex-col gap-4 px-8 pt-4">
             <div className="flex w-full flex-row items-center gap-4">
-                <h1 className="cursor-pointer" onClick={onHomeClick}>
+                <h1 className="cursor-pointer text-[#ededed]" onClick={onHomeClick}>
                     Magic Online PH
                 </h1>
                 <div className="relative grow rounded-xl border-2 border-none bg-[#ededed]">

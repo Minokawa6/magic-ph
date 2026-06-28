@@ -22,7 +22,7 @@ export const ProductCard = ({
     return (
         <div
             id={id}
-            className="text-text bg-card-bg m-auto flex h-fit w-[230px] cursor-pointer flex-col justify-evenly gap-1 rounded-2xl border-2 border-none p-2"
+            className="text-text bg-card-bg flex h-fit w-[230px] cursor-pointer flex-col justify-evenly gap-1 rounded-2xl border-2 border-none p-2"
             onClick={onClick}
         >
             <div className="flex h-16 items-center">

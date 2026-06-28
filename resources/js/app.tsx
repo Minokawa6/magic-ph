@@ -1,3 +1,4 @@
+import 'keyrune/css/keyrune.css';
 import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/react';

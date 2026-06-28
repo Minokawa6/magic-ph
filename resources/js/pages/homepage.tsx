@@ -7,7 +7,7 @@ export default function Homepage() {
         <DefaultLayout>
             <div className="flex h-fit flex-1 flex-col items-center pt-6">
                 {/* Main Header */}
-                <div className="h-[350px] w-[850px] overflow-hidden rounded-2xl border-2 border-none bg-emerald-500">
+                <div className="h-[350px] w-[850px] overflow-hidden rounded-2xl border-2 border-none">
                     <img className="aspect-[1640/680] h-full w-full object-cover object-center" src="/images/MTGSOS_sma_key_1640x680_en.jpg" />
                 </div>
                 <h1 className="self-start p-4"> Latest Products</h1>

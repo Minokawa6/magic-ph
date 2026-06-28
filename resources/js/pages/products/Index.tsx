@@ -5,8 +5,25 @@ import { router } from '@inertiajs/react';
 export default function Index() {
     return (
         <DefaultLayout>
-            <div className="flex h-full min-h-0 flex-1 flex-row place-content-center overflow-hidden bg-amber-200 p-4">
-                <div className="grid grid-cols-5 gap-2">
+            <div className="flex flex-row gap-2 pt-8">
+                <div className="flex-1 px-2">
+                    <h1>Filter Search:</h1>
+                    <form className="flex flex-col gap-2">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" name="name" className="bg-card-bg text-text rounded-md border-2 border-white p-1" />
+                        <label htmlFor="type">Type:</label>
+                        <input type="text" id="type" name="type" className="bg-card-bg text-text rounded-md border-2 border-white p-1" />
+                        <label htmlFor="color">Color:</label>
+                        <input type="text" id="color" name="color" className="bg-card-bg text-text rounded-md border-2 border-white p-1" />
+                        <label htmlFor="rarity">Rarity:</label>
+                        <input type="text" id="rarity" name="rarity" className="bg-card-bg text-text rounded-md border-2 border-white p-1" />
+                        <button type="submit" className="bg-card-bg text-text hover:bg-card-hover rounded-md border-2 border-white p-1">
+                            Search
+                        </button>
+                    </form>
+                </div>
+                <div className="flex-0 border-2 border-white"></div>
+                <div className="flex h-full flex-4 flex-row justify-start gap-2 overflow-hidden not-even:flex-wrap">
                     {Array.from({ length: 20 }).map((_, i) => (
                         <ProductCard
                             key={i}
