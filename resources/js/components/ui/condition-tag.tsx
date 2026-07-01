@@ -25,7 +25,7 @@ export const ConditionTag = ({condition, size = 'sm'}:ConditionProps) =>{
 
     return(
         <div className={`${conditionColors[condition]} rounded-2xl ${conditionSizes[size]} items-center`}>
-            <p className="font-bold text-white text-xs">{condition}</p>
+            <p className="font-bold text-white text-xs text-center">{condition}</p>
         </div>
     )
 }

@@ -16,7 +16,7 @@ export const PriceRow = ({condition, price, stock}: PriceRowProps) => {
             <div className="justify-self-stretch">
                 <ConditionTag condition={condition} />
             </div>
-            <div className="text-red-600 font-bold">{price}</div>
+            <div className="text-price font-bold">{price}</div>
             <div>{stock}</div>
             <div>
                 <QuantityStepper />
