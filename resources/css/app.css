@@ -14,7 +14,7 @@
     --color-price: #ff0d0d;
 
     --color-bg: var(--background);
-    --color-nav: var(--nav);
+    --color-nav: #2b3049;
     --color-nm: #17c14f;
 
     --color-card-bg: var(--card-bg);
@@ -37,7 +37,6 @@
 
     /* Color mods */
     --background: #ededed;
-    --nav: #2b3049;
 
     /* Card mods */
     --card-bg: #ffffff;
@@ -51,7 +50,6 @@
 
     /* Color mods */
     --background: #4e5155;
-    --nav: #2b3049;
 
     /* Card mods */
     --card-bg: #3c3c3c;

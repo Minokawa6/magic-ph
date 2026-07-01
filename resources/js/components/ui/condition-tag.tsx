@@ -1,6 +1,6 @@
-type conditionTypes = 'NM' | 'LP'| 'MP' | 'HP' | 'DMG';
+import { ConditionTypes } from "@/types"
 
-const conditionColors: Record<conditionTypes, string> = {
+const conditionColors: Record<ConditionTypes, string> = {
     NM:  'bg-green-600',
     LP:  'bg-lime-500',
     MP:  'bg-yellow-500',
@@ -8,20 +8,20 @@ const conditionColors: Record<conditionTypes, string> = {
     DMG: 'bg-red-600',
 };
 
-type conditionSize = 'sm' | 'lg';
+type ConditionSize = 'sm' | 'lg';
 
-const conditionSizes: Record<conditionSize, string> = {
+const conditionSizes: Record<ConditionSize, string> = {
     sm: 'px-1.5 py-0.5 text-xs',
     lg: 'px-3 py-1 text-sm',
 };
 
-interface conditionProps {
-    condition: conditionTypes;
-    size?: conditionSize;
+interface ConditionProps {
+    condition: ConditionTypes;
+    size?: ConditionSize;
 }
 
 
-export const ConditionTag = ({condition, size = 'sm'}:conditionProps) =>{
+export const ConditionTag = ({condition, size = 'sm'}:ConditionProps) =>{
 
     return(
         <div className={`${conditionColors[condition]} rounded-2xl ${conditionSizes[size]} items-center`}>

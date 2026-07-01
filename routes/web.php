@@ -15,6 +15,9 @@ Route::get('/product-show', function () {
 Route::get('/cart', function () {
     return Inertia::render('cart/Index');
 });
+Route::get('/profile', function () {
+    return Inertia::render('');
+});
 
 
 

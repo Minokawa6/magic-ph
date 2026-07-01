@@ -1,5 +1,7 @@
 import { LucideIcon } from 'lucide-react';
 
+export type ConditionTypes = 'NM' | 'LP' | 'MP' | 'HP' | 'DMG';
+
 export interface Auth {
     user: User;
 }

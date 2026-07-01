@@ -7,8 +7,8 @@ interface buttonProps {
     onClick?: () => void
 };
 const btnStyles = {
-    primary: 'cursor-pointer rounded-md border-2 border-none font-bold text-white bg-[#3984e7] px-4 py-2 font-bold text-center',
-    secondary: ''
+    primary: 'cursor-pointer rounded-md border-2 border-none font-bold text-white bg-[#3984e7] px-4 py-2 text-center',
+    secondary: 'cursor-pointer rounded-md h-8 border-2 border-none font-bold text-xs text-white bg-[#3984e7] px-4 text-center',
 };
 
 export const Button = ({

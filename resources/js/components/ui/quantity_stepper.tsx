@@ -14,10 +14,10 @@ export const QuantityStepper = () => {
     };
 
     return (
-        <div className="flex items-center">
-            <div onClick={decrease}>-</div>
-            <span className="mx-2">{quantity}</span>
-            <div onClick={increase}>+</div>
+        <div className="flex items-center rounded-md border-2 overflow-hidden">
+            <div className="bg-gray-400 border-r-2 px-1 cursor-pointer" onClick={decrease}>-</div>
+            <span className="w-8">{quantity}</span>
+            <div className="bg-gray-400 border-l-2 px-1 cursor-pointer" onClick={increase}>+</div>
         </div>
     );
 };
