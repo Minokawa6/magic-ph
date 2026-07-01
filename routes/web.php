@@ -16,7 +16,7 @@ Route::get('/cart', function () {
     return Inertia::render('cart/Index');
 });
 Route::get('/profile', function () {
-    return Inertia::render('');
+    return Inertia::render('profilepage');
 });
 
 

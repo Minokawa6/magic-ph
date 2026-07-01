@@ -16,6 +16,7 @@
     --color-bg: var(--background);
     --color-nav: #2b3049;
     --color-nm: #17c14f;
+    --color-border: #676767;
 
     --color-card-bg: var(--card-bg);
 }

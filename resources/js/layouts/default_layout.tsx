@@ -4,7 +4,7 @@ import { router } from '@inertiajs/react'; //  router.visit('/products')
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="bg-bg flex min-h-screen max-w-screen flex-col">
-            <NavBar onHomeClick={() => router.visit('/')} />
+            <NavBar onHomeClick={() => router.visit('/')} onProfileClick={() => router.visit('/profile')} onCartClick={() => router.visit('/cart')} />
             <main className="flex flex-1 flex-col px-28 pb-8">{children}</main>
         </div>
     );
