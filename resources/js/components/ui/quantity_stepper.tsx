@@ -1,7 +1,10 @@
 import { useState } from 'react';
+interface QuantityStepperProps{
+    initialValue?: number
+}
 
-export const QuantityStepper = () => {
-    const [quantity, setQuantity] = useState(1);
+export const QuantityStepper = ({initialValue}:QuantityStepperProps) => {
+    const [quantity, setQuantity] = useState(initialValue ? initialValue : 1);
 
     const increase = () => {
         setQuantity(quantity + 1);

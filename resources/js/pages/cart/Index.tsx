@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ConditionTag } from '@/components/ui/condition-tag';
-import { QuantityStepper } from '@/components/ui/quantity_stepper';
+import { CartRow } from '@/components/ui/cart-row';
 import DefaultLayout from '@/layouts/default_layout';
 
 export default function Index() {
@@ -15,7 +14,7 @@ export default function Index() {
                     <div className="pr-2">Total</div>
                     <div className="border-border col-span-4 w-full border-b" />
                     {/* Row 2 */}
-                    <div>
+                    {/* <div>
                         <img
                             className="aspect-750/1050 w-full overflow-clip rounded-xl p-1"
                             src="/images/mtg-cards/c21-190-garruk-primal-hunter.jpg"
@@ -33,7 +32,23 @@ export default function Index() {
                         <QuantityStepper />
                     </div>
                     <div className="text-price font-bold">₱100</div>
-                    <div className="border-border col-span-4 w-full border-b" />
+                    <div className="border-border col-span-4 w-full border-b" /> */}
+                    <CartRow
+                        imgSrc="/images/mtg-cards/c21-190-garruk-primal-hunter.jpg"
+                        condition="NM"
+                        price={100}
+                        name="Garruk, Primal Hunter (C21)"
+                        quantity={2}
+                        totalPrice={200}
+                    />
+                    <CartRow
+                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
+                        condition="LP"
+                        price={50}
+                        name="Lightning Bolt"
+                        quantity={1}
+                        totalPrice={50}
+                    />
                 </div>
                 <div className="self-end">
                     <div className="flex flex-row place-content-center gap-8 pb-2">
