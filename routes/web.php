@@ -1,10 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\ProductListing;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('homepage');
+    //dd(ProductListing::latest()->take(5)->get());
+    return Inertia::render('homepage', [
+        'productListings' => ProductListing::latest()
+        ->take(5)
+        ->get(),
+    ]);
 })->name('home');
 Route::get('/products', function () {
     return Inertia::render('products/Index');

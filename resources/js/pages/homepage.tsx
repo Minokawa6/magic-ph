@@ -2,7 +2,35 @@ import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
 import { router } from '@inertiajs/react';
 
-export default function Homepage() {
+interface ProductImage {
+    id: number;
+    image_path: string;
+    is_primary: boolean;
+}
+
+interface Product {
+    id: number;
+    name: string;
+    type: string;
+    rarity: string;
+    images: ProductImage[];
+}
+
+interface ProductListing {
+    id: number;
+    product_id: number;
+    condition: string;
+    stock_quantity: number;
+    price: number;
+    product: Product;
+}
+
+interface HomepageProps {
+    productListings: ProductListing[];
+}
+
+export default function Homepage({ productListings }: HomepageProps) {
+    console.log(productListings);
     return (
         <DefaultLayout>
             <div className="flex h-fit flex-1 flex-col items-center pt-6">
@@ -13,47 +41,18 @@ export default function Homepage() {
                 <h1 className="self-start p-4"> Latest Products</h1>
                 {/* Products Grid */} {/*TODO: Create a Map to display Product Cards */}
                 <div className="flex gap-4">
-                    <ProductCard
-                        id="1"
-                        name="Lightning Bolt asdgfasdfasdfasdfasfd"
-                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
-                        imgAlt="Lightning Bolt"
-                        subtitle="#177 | 2X2 | Instant | "
-                        price="120"
-                        onClick={() => router.visit('/product-show')}
-                    />
-                    <ProductCard
-                        id="2"
-                        name="Lightning Bolt"
-                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
-                        imgAlt="Lightning Bolt"
-                        subtitle="#177 | 2X2 | Instant | "
-                        price="120"
-                    />
-                    <ProductCard
-                        id="3"
-                        name="Lightning Bolt"
-                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
-                        imgAlt="Lightning Bolt"
-                        subtitle="#177 | 2X2 | Instant | "
-                        price="120"
-                    />
-                    <ProductCard
-                        id="4"
-                        name="Lightning Bolt"
-                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
-                        imgAlt="Lightning Bolt"
-                        subtitle="#177 | 2X2 | Instant | "
-                        price="120"
-                    />
-                    <ProductCard
-                        id="5"
-                        name="Lightning Bolt"
-                        imgSrc="/images/mtg-cards/2x2-117-lightning-bolt.jpg"
-                        imgAlt="Lightning Bolt"
-                        subtitle="#177 | 2X2 | Instant | "
-                        price="120"
-                    />
+                    {productListings.map((listing) => (
+                        <ProductCard
+                            key={listing.id}
+                            id={`${listing.id}`}
+                            name={listing.product.name}
+                            imgSrc={listing.product.images[0]?.image_path}
+                            imgAlt={listing.product.name}
+                            subtitle={`#${listing.id} | ${listing.product.type} | ${listing.product.rarity} | `}
+                            price={`₱${listing.price}`}
+                            onClick={() => router.visit('/product-show')}
+                        />
+                    ))}
                 </div>
             </div>
         </DefaultLayout>
