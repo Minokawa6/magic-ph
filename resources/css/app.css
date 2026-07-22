@@ -8,7 +8,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans: 'Inter', sans-serif;
+    /* Font mods */
+    --font-inter: 'Inter', sans-serif;
+
+    /* Color mods */
     --color-text: var(--text-color);
     --color-subtext: var(--subtext-color);
     --color-price: #ff0d0d;
@@ -23,6 +26,7 @@
 @layer base {
     /* applies default values to the whole website */
     * {
+        @apply font-inter;
     }
 
     h1 {
