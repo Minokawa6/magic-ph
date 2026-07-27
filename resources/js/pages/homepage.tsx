@@ -11,8 +11,7 @@ interface ProductImage {
 interface Product {
     id: number;
     name: string;
-    type: string;
-    rarity: string;
+    product_type: string;
     images: ProductImage[];
 }
 
@@ -48,7 +47,7 @@ export default function Homepage({ productListings }: HomepageProps) {
                             name={listing.product.name}
                             imgSrc={listing.product.images[0]?.image_path}
                             imgAlt={listing.product.name}
-                            subtitle={`#${listing.id} | ${listing.product.type} | ${listing.product.rarity} | `}
+                            subtitle={`#${listing.id} | ${listing.product.product_type}`}
                             price={`₱${listing.price}`}
                             onClick={() => router.visit('/product-show')}
                         />

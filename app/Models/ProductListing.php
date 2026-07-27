@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ProductCondition;
 
 class ProductListing extends Model
 {
@@ -14,6 +15,9 @@ class ProductListing extends Model
         'condition',
         'stock_quantity',
         'price',
+    ];
+    protected $casts = [
+        'condition' => ProductCondition::class,
     ];
 
     public function product()

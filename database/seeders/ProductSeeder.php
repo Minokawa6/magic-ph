@@ -16,14 +16,14 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $single_one = Product::create([
-            'name' => 'Lightning Bolt 2x2 #117',
+            'name' => 'Lightning Bolt',
             'product_type' => 'single',
             'description' => 'Lightning Bolt Single',
             'slug' => 'lightning-bolt-2x2-117',
         ]);
         ProductImage::create([
             'product_id' => $single_one->id,
-            'image_path' => 'images/products/lightning-bolt-2x2-117.jpg',
+            'image_path' => '/images/mtg-cards/2x2-117-lightning-bolt.jpg',
             'source' => 'local',
             'face' => false,
             'is_primary' => true,
@@ -37,14 +37,14 @@ class ProductSeeder extends Seeder
         ]);
 
         $single_two = Product::create([
-            'name' => 'Garruk, Primal Hunter c21 #190',
+            'name' => 'Garruk, Primal Hunter',
             'product_type' => 'single',
             'description' => 'Garruk, Primal Hunter c21 #190',
             'slug' => 'garruk-primal-hunter-c21-190',
         ]);
         ProductImage::create([
             'product_id' => $single_two->id,
-            'image_path' => 'images/products/garruk-primal-hunter-c21-190.jpg',
+            'image_path' => '/images/mtg-cards/c21-190-garruk-primal-hunter.jpg',
             'source' => 'local',
             'face' => false,
             'is_primary' => true,

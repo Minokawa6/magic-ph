@@ -7,9 +7,10 @@ use Inertia\Inertia;
 Route::get('/', function () {
     //dd(ProductListing::latest()->take(5)->get());
     return Inertia::render('homepage', [
-        'productListings' => ProductListing::latest()
-        ->take(5)
-        ->get(),
+        'productListings' => ProductListing::with([
+            'product',
+            'product.images'
+        ])->latest()->take(5)->get(),
     ]);
 })->name('home');
 Route::get('/products', function () {
