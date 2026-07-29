@@ -18,6 +18,8 @@ class ProductListing extends Model
     ];
     protected $casts = [
         'condition' => ProductCondition::class,
+        'price' => 'decimal:2',
+        'stock_quantity' => 'integer',
     ];
 
     public function product()

@@ -1,14 +1,36 @@
 <?php
 
 use Inertia\Testing\AssertableInertia as Assert;
+use App\Models\ProductListing;
 
-test('Homepage receives and shows 5 Products', function () {
+beforeEach(
+    function () {
+        $this->listings = ProductListing::factory()->count(5)->create();
+    }
+);
+
+it('displays and has a collection of ProductListings', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
 
-    $response->assertInertia(fn (Assert $page) => $page
-        ->component('Homepage') // whatever your page component is called, e.g. 'Home' or 'Products/Index'
-        ->has('products', 5) // asserts the products prop exists and has exactly 5 items
-    );
+    $props = $response->viewData('page')['props'];
+
+    expect($props['productListings'])
+        ->toHaveCount(5)
+        ->each(fn($listing) => $listing->toHaveKeys([
+            'id',
+            'product_id',
+            'condition',
+            'stock_quantity',
+            'price',
+        ]));
+});
+
+it('displays a banner carousel and 5 Product Listing Cards', function () {
+    $this->visit('/');
+});
+
+it('redirects to product/show when clicking on a Product Listing Card', function () {
+    expect(true)->toBeFalse();
 });

@@ -5,7 +5,6 @@ use App\Models\ProductListing;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    //dd(ProductListing::latest()->take(5)->get());
     return Inertia::render('homepage', [
         'productListings' => ProductListing::with([
             'product',

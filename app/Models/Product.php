@@ -10,7 +10,7 @@ use App\Enums\ProductType;
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
     protected $fillable = [
         'name',
         'product_type',
