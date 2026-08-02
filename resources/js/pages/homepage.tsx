@@ -50,6 +50,7 @@ export default function Homepage({ productListings }: HomepageProps) {
                             subtitle={`#${listing.id} | ${listing.product.product_type}`}
                             price={`₱${listing.price}`}
                             onClick={() => router.visit('/product-show')}
+                            data-testid="product-listing-card"
                         />
                     ))}
                 </div>
