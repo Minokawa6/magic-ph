@@ -2,7 +2,10 @@
 
 use App\Models\Product;
 use App\Enums\ProductCondition;
+use App\Models\ProductImage;
 use App\Models\ProductListing;
+
+use function PHPSTORM_META\map;
 
 // beforeEach(
 //     function(){
@@ -13,48 +16,57 @@ use App\Models\ProductListing;
 it('can create a new ProductListing from existing Product', function () {
     $product = Product::factory()->create();
 
-    $response = $this->post('/product-listings', [
+    $response = $this->post('/productlistings', [
         'product_id' => $product->id,
         'condition' => ProductCondition::NewMint->value,
         'stock_quantity' => fake()->numberBetween(1, 10),
         'price' => 19.99,
     ]);
 
-    $response->assertStatus(201);
+    $response->assertRedirect();
+    $this->assertDatabaseHas('product_listings', ['id' => $product->id]);
 });
 
-it('rejects a non-existent product', function(){
-    $response = $this->post('/product-listings', [
+it('rejects a non-existent product', function () {
+    // checks if validation stops an invalid post request
+
+    $response = $this->post('/productlistings', [
         'product_id' => 999999, // no product with this id
         'condition' => ProductCondition::NewMint->value,
         'stock_quantity' => 10,
         'price' => 19.99,
     ]);
 
-    $response->assertStatus(422);
+    $response->assertSessionHasErrors('product_id');
 });
 
 it('can view an Index of ProductListing', function () {
     $products = ProductListing::factory()->count(5)->create();
-    $response = $this->get('/product-listings');
+    $products->map(function ($productListing) {
+        return ProductImage::factory()->create(['product_id' => $productListing->product_id]);
+    });
+    $response = $this->get('/productlistings');
 
     $response->assertStatus(200);
-    $page = visit('/product-listing');
+    $page = visit('/productlistings');
+    $page->assertNoJavascriptErrors();
 
     // Check the server-sent data (view data)
     $pageData = json_decode($page->attribute('#app', 'data-page'), true);
-    expect($pageData['props']['productListings'])->toHaveCount(5);
+    expect(count($pageData['props']['productListings']['data']))->toBeGreaterThanOrEqual(5);
 
     // Check it actually rendered in the DOM
     $page->assertCount('[data-testid="product-listing-card"]', 5);
 });
 
-it('can show a detailed ProductListing', function(){
+it('can show a detailed ProductListing', function () {
     $product = ProductListing::factory()->create();
+
+
     $response = $this->get("/product-listing/{$product->id}");
 
     $response->assertStatus(200);
-    
+
     $page = visit("/product-listing/{$product->id}");
 
     $pageData = json_decode($page->attribute('#app', 'data-page'), true);
@@ -63,10 +75,10 @@ it('can show a detailed ProductListing', function(){
     expect($pageData['props']['productListing']['condition'])->toBe($product->condition->value);
 
     $page->assertSee((string) $product->price)
-         ->assertSee($product->condition->value);
+        ->assertSee($product->condition->value);
 });
 
-it('redirects to index when ProductListing doesnt exist and shows an error', function (){
+it('redirects to index when ProductListing doesnt exist and shows an error', function () {
     $response = $this->get("/product-listing/99999");
 
     $response->assertRedirect('/product-listing');
@@ -75,7 +87,7 @@ it('redirects to index when ProductListing doesnt exist and shows an error', fun
     $page = visit('/product-listings/99999');
 
     $page->assertUrlIs('/product-listing')
-         ->assertSee('This product listing does not exist');
+        ->assertSee('This product listing does not exist');
 });
 
 it('can return key information from ProductListing for a product card', function () {

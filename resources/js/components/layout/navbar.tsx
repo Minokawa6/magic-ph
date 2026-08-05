@@ -20,7 +20,7 @@ export const NavBar = ({ onHomeClick, onProfileClick, onCartClick }: NavBarProps
                 <img className="h-8 cursor-pointer invert" onClick={onProfileClick} src="/images/circle-icon.svg" alt="Profile" />
             </div>
             <div className="flex w-full flex-row border-t-2 border-[#444E80] px-4 text-sm">
-                <Link href="/products" className="my-1 px-4 font-medium text-[#ededed]">
+                <Link href="/productlistings" className="my-1 px-4 font-medium text-[#ededed]">
                     Singles
                 </Link>
                 <Link href="/" className="my-1 border-l-2 border-[#444E80] px-4 font-medium text-[#ededed]">

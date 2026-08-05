@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\ProductListing;
-use Illuminate\Http\Request;
-use Number;
+use App\Http\Requests\StoreProductListingRequest;
+use App\Http\Requests\UpdateProductListingRequest;
+use App\Http\Resources\ProductListingResource;
 
 class ProductListingController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $productListings = ProductListing::all();
-        return inertia('ProductListings/Index', [
-            'productListings' => $productListings,
-        ]);
+        $productListings = ProductListing::query()
+            ->with(['product.images'])
+            ->latest()
+            ->paginate(24)
+            ->withQueryString();
+
+        return Inertia::render('products/Index', ['productListings' => ProductListingResource::collection($productListings)]);
     }
-        /**
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -26,9 +35,10 @@ class ProductListingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductListingRequest $request)
     {
-        //
+        ProductListing::create($request->validated());
+        return redirect('/productlisting');
     }
 
     /**
@@ -36,14 +46,7 @@ class ProductListingController extends Controller
      */
     public function show(ProductListing $productListing)
     {
-        //
-    }
-
-    /**
-     * Returns Key Information on a product listing
-     */
-    public function showCard(Number $productId){
-
+        return Inertia::render('products/Show');
     }
 
     /**
@@ -57,7 +60,7 @@ class ProductListingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductListing $productListing)
+    public function update(UpdateProductListingRequest $request, ProductListing $productListing)
     {
         //
     }

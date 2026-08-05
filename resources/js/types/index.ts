@@ -40,3 +40,47 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface ProductImage {
+    id: number;
+    image_path: string;
+    is_primary: boolean;
+}
+
+export interface Product {
+    id: number;
+    name: string;
+    product_type: string;
+    images: ProductImage[];
+}
+
+export interface ProductListing {
+    id: number;
+    product_id: number;
+    condition: string;
+    stock_quantity: number;
+    price: number;
+    product: Product;
+}
+
+export interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
+export interface Paginated<T> {
+    data: T[];
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+    from: number | null;
+    to: number | null;
+    links: PaginationLink[];
+    first_page_url: string;
+    last_page_url: string;
+    next_page_url: string | null;
+    prev_page_url: string | null;
+    path: string;
+}

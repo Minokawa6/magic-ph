@@ -1,28 +1,7 @@
 import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
+import { ProductListing } from '@/types';
 import { router } from '@inertiajs/react';
-
-interface ProductImage {
-    id: number;
-    image_path: string;
-    is_primary: boolean;
-}
-
-interface Product {
-    id: number;
-    name: string;
-    product_type: string;
-    images: ProductImage[];
-}
-
-interface ProductListing {
-    id: number;
-    product_id: number;
-    condition: string;
-    stock_quantity: number;
-    price: number;
-    product: Product;
-}
 
 interface HomepageProps {
     productListings: ProductListing[];

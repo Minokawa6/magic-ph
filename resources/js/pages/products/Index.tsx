@@ -1,8 +1,13 @@
 import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
+import { Paginated, ProductListing } from '@/types';
 import { router } from '@inertiajs/react';
 
-export default function Index() {
+interface IndexProps {
+    productListings: Paginated<ProductListing>;
+}
+
+export default function Index({ productListings }: IndexProps) {
     return (
         <DefaultLayout>
             <div className="flex flex-row gap-2 pt-8">
@@ -24,7 +29,20 @@ export default function Index() {
                 </div>
                 <div className="flex-0 border-2 border-white"></div>
                 <div className="flex h-full flex-4 flex-row justify-start gap-2 overflow-hidden not-even:flex-wrap">
-                    {Array.from({ length: 20 }).map((_, i) => (
+                    {productListings.data.map((listing) => (
+                        <ProductCard
+                            key={listing.id}
+                            id={`${listing.id}`}
+                            name={listing.product.name}
+                            imgSrc={listing.product.images[0]?.image_path}
+                            imgAlt={listing.product.name}
+                            subtitle={`#${listing.id} | ${listing.product.product_type}`}
+                            price={`${listing.price}`}
+                            onClick={() => router.visit('/product-show')}
+                            data-testid="product-listing-card"
+                        />
+                    ))}
+                    {/* {Array.from({ length: 20 }).map((_, i) => (
                         <ProductCard
                             key={i}
                             id={String(i)}
@@ -35,7 +53,7 @@ export default function Index() {
                             price="₱120"
                             onClick={() => router.visit('/product-show')}
                         />
-                    ))}
+                    ))} */}
                 </div>
             </div>
         </DefaultLayout>

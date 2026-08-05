@@ -8,6 +8,7 @@ interface productCardProps {
     subtitle: string;
     price: string;
     onClick?: () => void;
+    'data-testid'?: string;
 }
 
 export const ProductCard = ({
@@ -18,12 +19,14 @@ export const ProductCard = ({
     subtitle,
     price,
     onClick,
+    ...rest
 }: productCardProps) => {
     return (
         <div
             id={id}
             className="text-text bg-card-bg flex h-fit w-[230px] cursor-pointer flex-col justify-evenly gap-1 rounded-2xl border-2 border-none p-2"
             onClick={onClick}
+            {...rest}
         >
             <div className="flex h-16 items-center">
                 <h2 className="line-clamp-2 text-base font-bold text-wrap">{name}</h2>

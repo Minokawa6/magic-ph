@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\ProductListing;
+use App\Http\Controllers\ProductListingController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -12,12 +13,14 @@ Route::get('/', function () {
         ])->latest()->take(5)->get(),
     ]);
 })->name('home');
-Route::get('/products', function () {
-    return Inertia::render('products/Index');
-});
-Route::get('/product-show', function () {
-    return Inertia::render('products/Show');
-});
+
+Route::resource('productlistings', ProductListingController::class);
+// Route::get('/products', function () {
+//     return Inertia::render('products/Index');
+// });
+// Route::get('/product-show', function () {
+//     return Inertia::render('products/Show');
+// });
 Route::get('/cart', function () {
     return Inertia::render('cart/Index');
 });
