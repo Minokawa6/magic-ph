@@ -14,7 +14,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::resource('productlistings', ProductListingController::class);
+Route::resource('productlisting', ProductListingController::class);
 // Route::get('/products', function () {
 //     return Inertia::render('products/Index');
 // });

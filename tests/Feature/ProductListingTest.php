@@ -16,7 +16,7 @@ use function PHPSTORM_META\map;
 it('can create a new ProductListing from existing Product', function () {
     $product = Product::factory()->create();
 
-    $response = $this->post('/productlistings', [
+    $response = $this->post('/productlisting', [
         'product_id' => $product->id,
         'condition' => ProductCondition::NewMint->value,
         'stock_quantity' => fake()->numberBetween(1, 10),
@@ -30,7 +30,7 @@ it('can create a new ProductListing from existing Product', function () {
 it('rejects a non-existent product', function () {
     // checks if validation stops an invalid post request
 
-    $response = $this->post('/productlistings', [
+    $response = $this->post('/productlisting', [
         'product_id' => 999999, // no product with this id
         'condition' => ProductCondition::NewMint->value,
         'stock_quantity' => 10,
@@ -45,10 +45,10 @@ it('can view an Index of ProductListing', function () {
     $products->map(function ($productListing) {
         return ProductImage::factory()->create(['product_id' => $productListing->product_id]);
     });
-    $response = $this->get('/productlistings');
+    $response = $this->get('/productlisting');
 
     $response->assertStatus(200);
-    $page = visit('/productlistings');
+    $page = visit('/productlisting');
     $page->assertNoJavascriptErrors();
 
     // Check the server-sent data (view data)
@@ -60,22 +60,23 @@ it('can view an Index of ProductListing', function () {
 });
 
 it('can show a detailed ProductListing', function () {
-    $product = ProductListing::factory()->create();
+    ProductListing::factory()->create();
+    $productListing = ProductListing::query()->first();
+    ProductListing::factory()->create(['product_id' => $productListing->product_id]);
 
-
-    $response = $this->get("/product-listing/{$product->id}");
+    $response = $this->get("/productlisting/{$productListing}");
 
     $response->assertStatus(200);
 
-    $page = visit("/product-listing/{$product->id}");
+    $page = visit("/productlisting/{$productListing}");
 
     $pageData = json_decode($page->attribute('#app', 'data-page'), true);
-    expect($pageData['component'])->toBe('ProductListings/Show'); // match your real component path
-    expect($pageData['props']['productListing']['id'])->toBe($product->id);
-    expect($pageData['props']['productListing']['condition'])->toBe($product->condition->value);
+    expect($pageData['component'])->toBe("/productlisting/{$productListing}"); // match your real component path
+    expect($pageData['props']['productListing']['id'])->toBe($productListing->id);
+    expect($pageData['props']['productListing']['condition'])->toBe($productListing->condition->value);
 
-    $page->assertSee((string) $product->price)
-        ->assertSee($product->condition->value);
+    $page->assertSee((string) $productListing->price)
+        ->assertSee($productListing->condition->value);
 });
 
 it('redirects to index when ProductListing doesnt exist and shows an error', function () {

@@ -1,22 +1,21 @@
 import { PriceRow } from '@/components/ui/price-row';
 import DefaultLayout from '@/layouts/default_layout';
-import { ConditionTypes } from '@/types';
+import { ConditionTypes, Product } from '@/types';
 
 //TODO Add interface to product show page
-
-interface PriceRowData {
+interface ProductListingShowTypes {
+    id: number;
     condition: ConditionTypes;
+    stock_quantity: number;
     price: string;
-    stock: number;
+    product: Product;
 }
 
-export default function Show() {
-    const priceRows: PriceRowData[] = [
-        { condition: 'NM', price: '₱100', stock: 2 },
-        { condition: 'LP', price: '₱90', stock: 2 },
-        { condition: 'MP', price: '₱85', stock: 1 },
-    ];
+interface ShowProps {
+    productListings: ProductListingShowTypes[];
+}
 
+export default function Show({ productListings }: ShowProps) {
     return (
         <DefaultLayout>
             <div className="flex h-full flex-row place-content-center p-4">

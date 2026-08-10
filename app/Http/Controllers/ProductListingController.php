@@ -39,14 +39,22 @@ class ProductListingController extends Controller
     {
         ProductListing::create($request->validated());
         return redirect('/productlisting');
-    }
+    } 
 
     /**
      * Display the specified resource.
      */
     public function show(ProductListing $productListing)
     {
-        return Inertia::render('products/Show');
+        $query = ProductListing::query()
+            ->select(['id','condition', 'stock_quantity', 'price','product_id'])
+            ->with('product.details')
+            ->where('product_id', $productListing->product_id)
+            ->where('stock_quantity', '>', 0)
+            ->get()
+            ->sortBy(fn (ProductListing $listing) => $listing->condition->sortOrder())
+            ->values();
+        return Inertia::render('products/Show', ['productListings' => $query]);
     }
 
     /**
