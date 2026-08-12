@@ -1,6 +1,7 @@
 import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
-import { Paginated, ProductListing } from '@/types';
+import { Paginated } from '@/types';
+import { ProductListing } from '@/types/models';
 import { router } from '@inertiajs/react';
 
 interface IndexProps {

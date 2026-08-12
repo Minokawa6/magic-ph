@@ -18,7 +18,7 @@ it('can create a new ProductListing from existing Product', function () {
 
     $response = $this->post('/productlisting', [
         'product_id' => $product->id,
-        'condition' => ProductCondition::NewMint->value,
+        'condition' => ProductCondition::NearMint->value,
         'stock_quantity' => fake()->numberBetween(1, 10),
         'price' => 19.99,
     ]);
@@ -32,7 +32,7 @@ it('rejects a non-existent product', function () {
 
     $response = $this->post('/productlisting', [
         'product_id' => 999999, // no product with this id
-        'condition' => ProductCondition::NewMint->value,
+        'condition' => ProductCondition::NearMint->value,
         'stock_quantity' => 10,
         'price' => 19.99,
     ]);

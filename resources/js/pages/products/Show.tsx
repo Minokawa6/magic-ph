@@ -1,6 +1,7 @@
 import { PriceRow } from '@/components/ui/price-row';
 import DefaultLayout from '@/layouts/default_layout';
-import { ConditionTypes, Product } from '@/types';
+import { ConditionTypes } from '@/types';
+import { Product } from '@/types/models';
 
 //TODO Add interface to product show page
 interface ProductListingShowTypes {

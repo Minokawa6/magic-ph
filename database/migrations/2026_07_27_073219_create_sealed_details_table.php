@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('sealed_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->string('product_type');
+            $table->string('set'); // set code
+            $table->string('set_name');
+            $table->decimal('msrp');
+            $table->date('release_date');
+            $table->boolean('is_collectors');
             $table->timestamps();
         });
     }

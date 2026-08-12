@@ -1,6 +1,6 @@
 import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
-import { ProductListing } from '@/types';
+import { ProductListing } from '@/types/models';
 import { router } from '@inertiajs/react';
 
 interface HomepageProps {
