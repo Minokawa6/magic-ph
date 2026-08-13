@@ -14,6 +14,7 @@ export interface Product {
     name: string;
     product_type: string;
     images: ProductImage[];
+    details: SingleDetails | SealedDetails;
 }
 
 export interface ProductImage {
@@ -31,10 +32,16 @@ export interface ProductListing {
     product: Product;
 }
 
-export interface SingleDetail {
+export interface SingleDetails {
     id: number;
+    product_id: number;
+    name: string;
+    set: string;
+    set_name: string;
+    collector_number: string;
+    rarity: string;
 }
 
-export interface SealedDetail {
+export interface SealedDetails {
     id: number;
 }

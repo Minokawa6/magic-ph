@@ -60,9 +60,9 @@ it('can view an Index of ProductListing', function () {
 });
 
 it('can show a detailed ProductListing', function () {
-    ProductListing::factory()->create();
+    ProductListing::factory()->create(['condition' => ProductCondition::NearMint->value]);
     $productListing = ProductListing::query()->first();
-    ProductListing::factory()->create(['product_id' => $productListing->product_id]);
+    ProductListing::factory()->create(['product_id' => $productListing->product_id, 'condition' => ProductCondition::HeavilyPlayed->value]);
 
     $response = $this->get("/productlisting/{$productListing}");
 
@@ -76,7 +76,9 @@ it('can show a detailed ProductListing', function () {
     expect($pageData['props']['productListing']['condition'])->toBe($productListing->condition->value);
 
     $page->assertSee((string) $productListing->price)
-        ->assertSee($productListing->condition->value);
+        ->assertSee($productListing->condition->value)
+        ->assertSee('NM')
+        ->assertSee('HP');
 });
 
 it('redirects to index when ProductListing doesnt exist and shows an error', function () {
