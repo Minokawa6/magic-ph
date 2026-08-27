@@ -1,11 +1,11 @@
 import { ProductCard } from '@/components/products/product_card';
 import DefaultLayout from '@/layouts/default_layout';
 import { Paginated } from '@/types';
-import { ProductListing } from '@/types/models';
+import { Product } from '@/types/models';
 import { router } from '@inertiajs/react';
 
 interface IndexProps {
-    productListings: Paginated<ProductListing>;
+    productListings: Paginated<Product>;
 }
 
 export default function Index({ productListings }: IndexProps) {
@@ -30,15 +30,15 @@ export default function Index({ productListings }: IndexProps) {
                 </div>
                 <div className="flex-0 border-2 border-white"></div>
                 <div className="flex h-full flex-4 flex-row justify-start gap-2 overflow-hidden not-even:flex-wrap">
-                    {productListings.data.map((listing) => (
+                    {productListings.data.map((product) => (
                         <ProductCard
-                            key={listing.id}
-                            id={`${listing.id}`}
-                            name={listing.product.name}
-                            imgSrc={listing.product.images[0]?.image_path}
-                            imgAlt={listing.product.name}
-                            subtitle={`#${listing.id} | ${listing.product.product_type}`}
-                            price={`${listing.price}`}
+                            key={product.id}
+                            id={`${product.id}`}
+                            name={product.name}
+                            imgSrc={product.images[0]?.image_path}
+                            imgAlt={product.name}
+                            subtitle={`#${product.id} | ${product.product_type}`}
+                            price={`1`}
                             onClick={() => router.visit('/product-show')}
                             data-testid="product-listing-card"
                         />
