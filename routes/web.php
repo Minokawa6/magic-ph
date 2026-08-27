@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\ProductListing;
 use App\Http\Controllers\ProductListingController;
@@ -15,9 +16,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('productlisting', ProductListingController::class);
-// Route::get('/products', function () {
-//     return Inertia::render('products/Index');
-// });
+Route::get('/products', [ProductController::class, 'index']);
 // Route::get('/product-show', function () {
 //     return Inertia::render('products/Show');
 // });

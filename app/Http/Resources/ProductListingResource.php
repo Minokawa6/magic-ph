@@ -13,7 +13,7 @@ class ProductListingResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
+    { // Turns the collection to an Array
         return parent::toArray($request);
     }
 }

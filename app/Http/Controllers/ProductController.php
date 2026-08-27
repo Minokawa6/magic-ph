@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,15 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    { // query for products with product listings and images then pass it off to a react/inertia page
+        $products = Product::query()
+            ->with(['images', 'listings'])
+            ->latest()
+            ->paginate(24)
+            ->withQueryString();
+
+
+        return Inertia::render('products/Index', ['productlistings' => $products]);
     }
 
     /**
